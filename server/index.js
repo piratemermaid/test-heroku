@@ -1,15 +1,18 @@
 const path = require('path')
+const cors = require('cors')
 var express = require('express');
 var app = express();
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join('../client/dist')));
   app.get('*', (req, res) => {
     res.sendFile(path.join('../client/dist/index.html'))
   })
 }
 
-app.get('/', function (req, res) {
+app.use(cors());
+
+app.get('/api', function (req, res) {
   res.send('Hello World');
 });
 
