@@ -2,12 +2,12 @@ const path = require('path')
 var express = require('express');
 var app = express();
 
-// if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join('../client/dist')));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+    res.sendFile(path.join('../client/dist/index.html'))
   })
-// }
+}
 
 app.get('/', function (req, res) {
   res.send('Hello World');
