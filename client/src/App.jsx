@@ -4,15 +4,15 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [message, setMessage] = React.useState(null);
+  const [users, setUsers] = React.useState(null);
 
   React.useEffect(() => {
     async function testApi() {
       try {
         const result = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/api`
+          `${import.meta.env.VITE_SERVER_URL}/api/users`
         );
-        setMessage(result.data);
+        setUsers(result.data);
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +24,18 @@ function App() {
   return (
     <>
       <h1>Test Heroku!</h1>
-      {message && <p>{message}</p>}
+      {users && (
+        <ul>
+          {users.map((user) => {
+            return (
+              <li>
+                <h3>{user.username}</h3>
+                <p>{user.email}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </>
   );
 }
