@@ -10,7 +10,7 @@ function App() {
     async function testApi() {
       try {
         const result = await axios.get(
-          `${import.meta.env.VITE_SERVER_URL}/api`,
+          `${import.meta.env.VITE_SERVER_URL}/api`
         );
         setMessage(result.data);
       } catch (error) {
